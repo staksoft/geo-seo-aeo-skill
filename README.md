@@ -14,6 +14,12 @@ the frameworks from our guide
 
 Free to use, modify, and share under the [MIT License](LICENSE).
 
+<p align="center">
+  <img src="assets/demo.gif" alt="Installing the geo-seo-aeo-skill and running a live SEO/GEO/AEO audit in Claude Code" width="820">
+</p>
+
+> The demo above is regenerated with `python scripts/generate_demo.py`.
+
 ---
 
 ## What it does
