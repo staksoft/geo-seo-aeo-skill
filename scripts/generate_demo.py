@@ -12,12 +12,13 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 # ---- layout / theme ---------------------------------------------------------
-W, H = 860, 664
-MARGIN_X, TOP = 28, 60
-LINE_H = 29
+W, H = 760, 600
+MARGIN_X, TOP = 24, 56
+LINE_H = 26
 FONT_PATH = r"C:\Windows\Fonts\consola.ttf"
 FONT_BOLD = r"C:\Windows\Fonts\consolab.ttf"
-FS = 18
+FS = 16
+BRAND = (45, 212, 191)     # Staksoft accent (teal)
 
 BG = (13, 17, 23)          # #0d1117
 BAR = (22, 27, 34)         # #161b22
@@ -83,9 +84,9 @@ def total_typable():
             n += len(t)
     return n
 
-CPF = 4            # characters revealed per frame
-PAUSE_FRAMES = 7   # hold length for a PAUSE sentinel
-HOLD_END = 30      # frames to hold the finished screen
+CPF = 5            # characters revealed per frame
+PAUSE_FRAMES = 6   # hold length for a PAUSE sentinel
+HOLD_END = 24      # frames to hold the finished screen
 
 def draw_frame(revealed, cursor_on=True):
     img = Image.new("RGB", (W, H), BG)
@@ -93,8 +94,12 @@ def draw_frame(revealed, cursor_on=True):
     # title bar + traffic lights
     d.rectangle([0, 0, W, 40], fill=BAR)
     for i, col in enumerate([(255, 95, 86), (255, 189, 46), (39, 201, 63)]):
-        d.ellipse([20 + i * 22, 14, 32 + i * 22, 26], fill=col)
-    d.text((W // 2 - 150, 11), "Claude Code  —  geo-seo-aeo-skill", font=font, fill=GRAY)
+        d.ellipse([18 + i * 20, 13, 29 + i * 20, 24], fill=col)
+    brand, rest = "Staksoft", "  ·  geo-seo-aeo-skill"
+    tw = d.textlength(brand, font=bfont) + d.textlength(rest, font=font)
+    bx = (W - tw) // 2
+    d.text((bx, 9), brand, font=bfont, fill=BRAND)
+    d.text((bx + d.textlength(brand, font=bfont), 9), rest, font=font, fill=GRAY)
 
     budget = revealed
     y = TOP
@@ -159,15 +164,53 @@ def build_frames():
         frames.append(draw_frame(TYPABLE, cursor_on=(k // 6) % 2 == 0))
     return frames
 
+def render_social_card(out_path):
+    """Static 1280x640 PNG for GitHub Settings -> Social preview."""
+    cw, ch = 1280, 640
+    img = Image.new("RGB", (cw, ch), BG)
+    d = ImageDraw.Draw(img)
+    # subtle top accent bar
+    d.rectangle([0, 0, cw, 8], fill=BRAND)
+    f_brand = ImageFont.truetype(FONT_BOLD, 30)
+    f_title = ImageFont.truetype(FONT_BOLD, 70)
+    f_sub = ImageFont.truetype(FONT_PATH, 28)
+    f_tag = ImageFont.truetype(FONT_BOLD, 34)
+    d.text((80, 90), "STAKSOFT", font=f_brand, fill=BRAND)
+    d.text((80, 150), "SEO · GEO · AEO", font=f_title, fill=WHITE)
+    d.text((80, 232), "Skill for AI Agents", font=f_title, fill=WHITE)
+    d.text((80, 340),
+           "Audit & generate web content optimized for Google,",
+           font=f_sub, fill=GRAY)
+    d.text((80, 378),
+           "ChatGPT, Perplexity, AI Overviews, and answer engines.",
+           font=f_sub, fill=GRAY)
+    # three lens chips
+    chips = [("SEO", SEO_C), ("GEO", GEO_C), ("AEO", AEO_C)]
+    x = 80
+    for label, col in chips:
+        w = d.textlength(label, font=f_tag) + 48
+        d.rounded_rectangle([x, 470, x + w, 530], radius=14, outline=col, width=3)
+        d.text((x + 24, 482), label, font=f_tag, fill=col)
+        x += w + 24
+    d.text((80, 575), "github.com/staksoft/geo-seo-aeo-skill  ·  MIT",
+           font=f_sub, fill=GRAY)
+    img.save(out_path)
+    return out_path
+
+
 def main():
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    out = os.path.join(here, "assets", "demo.gif")
+    assets = os.path.join(here, "assets")
+    out = os.path.join(assets, "demo.gif")
     frames = build_frames()
-    pal = [f.convert("P", palette=Image.ADAPTIVE, colors=48) for f in frames]
-    pal[0].save(out, save_all=True, append_images=pal[1:], duration=70,
+    pal = [f.convert("P", palette=Image.ADAPTIVE, colors=40) for f in frames]
+    pal[0].save(out, save_all=True, append_images=pal[1:], duration=72,
                 loop=0, optimize=True, disposal=2)
     kb = os.path.getsize(out) // 1024
     print(f"wrote {out}  ({len(frames)} frames, {kb} KB)")
+
+    social = render_social_card(os.path.join(assets, "social-preview.png"))
+    print(f"wrote {social}  ({os.path.getsize(social) // 1024} KB)")
 
 if __name__ == "__main__":
     main()
