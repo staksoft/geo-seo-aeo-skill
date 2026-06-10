@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{Article title, <= 110 chars}}",
+  "description": "{{One-sentence summary}}",
+  "image": "{{https://example.com/cover.jpg}}",
+  "datePublished": "{{2026-01-01}}",
+  "dateModified": "{{2026-01-01}}",
+  "author": {
+    "@type": "Person",
+    "name": "{{Author Name}}",
+    "url": "{{https://example.com/authors/name}}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{Company}}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{https://example.com/logo.png}}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{https://example.com/article-url}}"
+  }
+}

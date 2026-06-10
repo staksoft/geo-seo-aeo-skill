@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{Product name}}",
+  "image": "{{https://example.com/product.jpg}}",
+  "description": "{{Specific, quantified description}}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{Brand}}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{https://example.com/product}}",
+    "priceCurrency": "USD",
+    "price": "{{0.00}}",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{4.8}}",
+    "reviewCount": "{{124}}"
+  }
+}

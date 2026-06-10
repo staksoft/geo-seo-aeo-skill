@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>API Gateway Benchmarks: 50ms p95 Latency at 10k RPS</title>
+  <meta name="description" content="Independent benchmark of our API gateway: sub-50ms p95 latency at 10,000 requests per second, 99.99% uptime over 90 days, and $0.002 per request pricing.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/benchmarks">
+  <meta property="og:title" content="API Gateway Benchmarks">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "What is the p95 latency of the API gateway?",
+      "acceptedAnswer": {"@type": "Answer",
+        "text": "The API gateway sustains a sub-50ms p95 latency at 10,000 requests per second, measured over a 90-day window."}
+    }]
+  }
+  </script>
+</head>
+<body>
+  <h1>API Gateway Benchmarks: 50ms p95 Latency at 10k RPS</h1>
+
+  <h2>What is the p95 latency of the API gateway?</h2>
+  <p>The gateway sustains a sub-50ms p95 latency at 10,000 requests per second,
+     measured continuously over 90 days with 99.99% uptime.</p>
+
+  <h2>How much does it cost?</h2>
+  <p>Pricing is $0.002 per request with no minimum commitment, billed monthly.</p>
+
+  <h3>Detailed results</h3>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>p50 latency</td><td>12ms</td></tr>
+    <tr><td>p95 latency</td><td>48ms</td></tr>
+    <tr><td>Throughput</td><td>10,000 RPS</td></tr>
+    <tr><td>Uptime (90d)</td><td>99.99%</td></tr>
+  </table>
+
+  <img src="latency-chart.png" alt="p95 latency holding under 50ms across 10k RPS load test">
+  <a href="/docs">Read the documentation</a>
+  <a href="https://github.com/example/gateway">View source on GitHub</a>
+</body>
+</html>

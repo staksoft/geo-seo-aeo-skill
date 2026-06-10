@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{{The exact question as users phrase it}}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{Direct 40-55 word answer. Must match the visible on-page answer.}}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{Second question}}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{Answer}}"
+      }
+    }
+  ]
+}

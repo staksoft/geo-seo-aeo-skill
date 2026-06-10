@@ -1,0 +1,21 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "{{How to ...}}",
+  "totalTime": "{{PT15M}}",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "{{Step name}}",
+      "text": "{{Concise imperative instruction}}",
+      "url": "{{https://example.com/page#step1}}"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "{{Step name}}",
+      "text": "{{Instruction}}"
+    }
+  ]
+}
