@@ -36,11 +36,11 @@ Copy the skill into your skills directory:
 
 ```bash
 # personal (all your projects)
-git clone https://github.com/<your-org>/web-optimization.git \
+git clone https://github.com/<your-org>/geo-seo-aeo-skill.git \
   ~/.claude/skills/web-optimization
 
 # or project-scoped (shared with your team via the repo)
-git clone https://github.com/<your-org>/web-optimization.git \
+git clone https://github.com/<your-org>/geo-seo-aeo-skill.git \
   .claude/skills/web-optimization
 ```
 
