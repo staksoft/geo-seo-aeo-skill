@@ -66,6 +66,30 @@ produce new content.
 5. **Output** the content + JSON-LD + llms.txt entry + a short "why this is
    optimized" rationale mapping choices back to the three lenses.
 
+## Workflow C — Fix (interactive step-by-step)
+
+Use when the user says **"fix [URL]"**, **"fix the issues"**, or **"apply the fixes"**
+after an audit — or wants to be guided through improvements interactively.
+
+1. **Run or recall the audit.** If an audit was just completed, use those findings.
+   Otherwise run Workflow A first silently, then begin fixing.
+2. **Load `references/fix-playbook.md`.** It maps every finding type to the
+   minimum question(s) to ask and what to generate.
+3. **Work P0 → P1 → P2 → P3, one fix per turn:**
+   - State: what you're fixing and why (one line).
+   - Ask: the minimum question(s) needed (often zero — derive from fetched content).
+   - Generate: the complete, ready-to-paste output (JSON-LD block, file content,
+     rewritten copy, HTML snippet, diff of tag changes).
+   - Confirm: "Fix N of M done — move to the next one? (or say skip / stop)"
+4. **Maintain a session checklist** (✅ done / ⏭ skipped / ⬜ pending) and show
+   it at the top of each turn so the user always knows where they are.
+5. **On "stop" or "done"**: show the full checklist summary and remind the user
+   of any skipped items.
+
+> **Key principle:** Never ask the user to write anything manually. Every output
+> should be copy-paste ready. If you need a number or URL you can't derive,
+> ask for that one thing — then generate everything else yourself.
+
 ## Quick rules of thumb
 
 - **Information density beats word count.** Replace hedges ("might be fast") with
